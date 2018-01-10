@@ -1,0 +1,19 @@
+:host(app-page-not-found) {
+  height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #999;
+
+  .not-found {
+    font-size: 250px;
+
+    mat-icon {
+      height: 250px;
+      width: 250px;
+      font-size: 250px;
+    }
+  }
+}

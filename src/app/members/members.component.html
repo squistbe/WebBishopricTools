@@ -1,0 +1,17 @@
+<button mat-icon-button mat-mini-fab class="add-member" (click)="addMember()" matTooltip="Add Member" matTooltipPosition="left" matTooltipHideDelay="500">
+  <mat-icon>add</mat-icon>
+</button>
+<div class="member-search-container">
+  <input class="member-search-field" placeholder="Search members" [(ngModel)]="searchText">
+</div>
+<mat-list class="member-list">
+  <mat-list-item *ngFor="let member of (members | async) | filter : searchText : 'name'">
+    {{member.name}}
+    <div class="member-info" [hidden]="!member.phone">
+      {{member.phone}}
+    </div>
+    <div class="member-info" [hidden]="!member.email">
+      {{member.email}}
+    </div>
+  </mat-list-item>
+</mat-list>

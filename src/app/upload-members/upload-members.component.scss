@@ -1,0 +1,34 @@
+:host(app-upload-members) {
+  .drop-zone {
+    border: 2px dashed #ccc;
+    margin: 1em;
+    border-radius: .5em;
+    height: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: #ccc;
+    background-color: #fff;
+    flex-direction: column;
+  }
+  .drop-zone.file-over {
+    border-color: #1473e5;
+    color: #1473e5;
+  }
+
+  .instructions {
+    font-weight: 200;
+    margin: 1em;
+  }
+
+  li {
+    padding-bottom: 1em;
+    font-size: 30px;
+
+    img {
+      margin-top: 1em;
+      display: block;
+    }
+  }
+}

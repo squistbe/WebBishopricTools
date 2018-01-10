@@ -1,0 +1,11 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" type="password" formControlName="password">
+  </mat-form-field>
+  <button mat-raised-button color="primary">Login</button>
+  <button mat-raised-button class="google-login">Login with GOOGLE</button>
+  <button mat-button (click)="createAccount()">Create an account</button>
+</form>

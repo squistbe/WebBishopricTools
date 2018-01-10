@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add Calling to {{data.org.name}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="addCallingForm" class="add-calling-form">
+    <mat-form-field>
+      <input type="text" placeholder="Calling Name" matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field *ngIf="data.org.name === 'Primary' || data.org.name === 'Sunday School'">
+      <input type="text" placeholder="Class Name" matInput formControlName="className">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" placeholder="Member" matInput formControlName="member" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let member of (data.members | async) | filter : member.value : 'name'" [value]="member">
+          {{ member.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Status" formControlName="status">
+        <mat-option *ngFor="let item of data.statuses" [value]="item">{{item.label}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="addCallingForm.value">Add</button>
+</div>

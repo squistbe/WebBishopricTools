@@ -1,0 +1,61 @@
+<div class="instructions">
+  <p>Since LDS Tools API's are not public, we will need to generate our own member data through MLS.</p>
+  <p>Click here for instructions. <a (click)="showInstructions = !showInstructions;" style="color: blue; cursor: pointer;">{{showInstructions ? 'hide' : 'show'}}</a></p>
+  <div [hidden]="!showInstructions">
+    <ol>
+      <li>
+        Login to MLS and click on "More" under the "Reports/Forms" section.
+        <img src="../../assets/images/upload-instructions/1-mls-main.png">
+      </li>
+      <li>
+        Under "Reports/Tools" click on "Custom Reports".
+        <img src="../../assets/images/upload-instructions/2-mls-reports.png">
+      </li>
+      <li>
+        In the top right corner of the "Custom Reports" tab, click on "Add Report".
+        <img src="../../assets/images/upload-instructions/3-mls-add-report.png">
+      </li>
+      <li>
+        Give the report a name (doesn't matter what name you give it).
+        <img src="../../assets/images/upload-instructions/4-mls-name-report.png">
+      </li>
+      <li>
+        Click on the "Format" tab to the left. In the "Columns" section, add the following columns then click "Save":
+        <ul>
+          <li>Preferred Name</li>
+          <li>Record Number</li>
+          <li>Birth Date</li>
+          <li>Individual E-mail</li>
+          <li>Individual Phone Number</li>
+          <li>Sex</li>
+        </ul>
+        <img src="../../assets/images/upload-instructions/5-mls-format.png">
+      </li>
+      <li>
+        Open the report you just created (I hope you remember what you named it) and click on "Save to file".
+        <img src="../../assets/images/upload-instructions/6-mls-save-report.png">
+      </li>
+      <li>
+        Save the file as a CSV.
+        <img src="../../assets/images/upload-instructions/7-mls-save-csv.png">
+      </li>
+    </ol>
+    <p>When you need to update member information, you may go back to this same report and upload the file or you can
+      update the member's info individual by going to the <a routerLink="/members">"Members"</a> tab.</p>
+    <p>Now drop your file below.</p>
+  </div>
+
+  <button mat-raised-button (click)="fileInput.click()">Upload File</button>
+  <span style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height:0px;border:none;margin:0; padding:0">
+  <input type="file" #fileInput ng2FileSelect [uploader]="uploader" />
+</span> or
+</div>
+<div
+  ng2FileDrop
+  [ngClass]="{'file-over': hasDropZoneOver}"
+  (fileOver)="fileOverZone($event)"
+  (onFileDrop)="dropped($event)"
+  [uploader]="uploader"
+  class="drop-zone">
+  Drop file here
+</div>

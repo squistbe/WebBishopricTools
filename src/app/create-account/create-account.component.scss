@@ -1,0 +1,18 @@
+:host(app-create-account) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: -webkit-fill-available;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 25em;
+
+    button {
+      margin-top: .5em;
+    }
+  }
+}

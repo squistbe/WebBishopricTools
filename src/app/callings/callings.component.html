@@ -1,0 +1,52 @@
+<mat-list class="callings-list">
+  <ng-container *ngFor="let org of orgs | async">
+    <h2 matSubheader class="org-header">
+      {{org.name}}
+      <button mat-icon-button (click)="addOrgCalling(org)" matTooltip="Add calling" matTooltipPosition="right">
+        <mat-icon>add</mat-icon>
+      </button>
+    </h2>
+
+    <mat-divider></mat-divider>
+    <mat-list-item *ngFor="let calling of org.callings">
+      <mat-progress-bar mode="indeterminate" *ngIf="calling.loading"></mat-progress-bar>
+      <div matLine class="member-info {{calling.status ? calling.status.id : ''}}" *ngIf="!calling.loading">
+        <div class="member-calling">{{calling.name}}</div>
+
+        <button mat-icon-button (click)="removeMember(calling, org)" matTooltip="Remove member from calling" matTooltipPosition="left" *ngIf="calling.member">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="openFindMember(calling, org)" matTooltip="{{calling.member ? 'Edit' : 'Add'}} member" matTooltipPosition="left">
+          <mat-icon *ngIf="calling.member">edit</mat-icon>
+          <mat-icon *ngIf="!calling.member">add</mat-icon>
+        </button>
+
+        <div class="member-name" *ngIf="calling.member">
+          {{calling.member.name.first}} {{calling.member.name.last}}
+        </div>
+
+        <div class="calling-vacant" *ngIf="!calling.member">
+          [vacant]
+        </div>
+
+        <mat-menu #statusMenu="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item *ngFor="let status of callingStatus" (click)="statusSelect(calling, org, status.value)" class="status-item">{{status.label}}</button>
+        </mat-menu>
+        <button mat-raised-button [matMenuTriggerFor]="statusMenu" class="status-button" [ngClass]="{'status-vacant': !calling.status}" [disabled]="!calling.member">
+          {{calling.status ? calling.status.label : 'status'}}
+        </button>
+      </div>
+
+
+      <!--<button mat-icon-button [matMenuTriggerFor]="callingMenu">-->
+        <!--<mat-icon>more_vert</mat-icon>-->
+      <!--</button>-->
+
+      <!--<mat-menu #callingMenu="matMenu">-->
+        <!--<button mat-menu-item (click)="findMember()">Change Member</button>-->
+        <!--<button mat-menu-item (click)="updateOrgCalling()">{{calling.status ? 'Change' : 'Add'}} Status</button>-->
+      <!--</mat-menu>-->
+    </mat-list-item>
+  </ng-container>
+</mat-list>

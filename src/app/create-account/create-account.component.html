@@ -1,0 +1,17 @@
+<h1>Create an Account</h1>
+<form [formGroup]="createAccountForm" (ngSubmit)="create()">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" type="password" formControlName="password">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword">
+  </mat-form-field>
+  <button mat-raised-button color="primary">Create</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</form>

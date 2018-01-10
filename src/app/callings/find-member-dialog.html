@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{data.calling.name}}</h1>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <input type="text" placeholder="Search members" matInput [formControl]="search" [matAutocomplete]="auto" (keyup)="onKey($event)">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let member of (data.members | async) | filter : search.value : 'name'" [value]="member">
+          {{ member.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="search.value">Apply</button>
+</div>

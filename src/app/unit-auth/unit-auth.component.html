@@ -1,0 +1,28 @@
+<div *ngIf="showWelcome">
+  <h1>First of all, welcome!</h1>
+  <p>It looks like you don't have a Ward or Branch associated to your account. Would you like create or join one?</p>
+  <button mat-raised-button color="primary" (click)="createUnit()">Create</button>
+  <button mat-raised-button color="primary" (click)="joinUnit()">Join</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</div>
+
+<form [formGroup]="createUnitForm" (ngSubmit)="submit(createUnitForm)" *ngIf="showCreate">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Unit Number" formControlName="unitNumber">
+  </mat-form-field>
+  <input type="hidden" formControlName="ownerId">
+  <button mat-raised-button color="primary">Create</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</form>
+
+<form [formGroup]="joinUnitForm" (ngSubmit)="submit(joinUnitForm)" *ngIf="showJoin">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name">
+  </mat-form-field>
+  <button mat-raised-button color="primary">Join</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</form>
+

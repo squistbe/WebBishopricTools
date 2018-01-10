@@ -1,0 +1,35 @@
+.add-member {
+  position: fixed;
+  right: 0;
+  margin: .5em;
+  z-index: 3;
+  top: 140px;
+}
+
+.member-list {
+  padding-top: 75px;
+
+  .member-info {
+    color: #999;
+    font-size: 12px;
+    margin-left: 1em;
+  }
+}
+
+.member-search-container {
+  background-color: #ccc;
+  padding: 1em;
+  display: flex;
+  position: fixed;
+  width: -webkit-fill-available;
+  z-index: 2;
+
+  .member-search-field{
+    border-radius: 3em;
+    border: none;
+    padding: .5em;
+    font-size: 20px;
+    outline: none;
+    width: 75%
+  }
+}

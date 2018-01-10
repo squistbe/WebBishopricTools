@@ -1,0 +1,19 @@
+:host(app-unit-auth) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: -webkit-fill-available;
+  padding: 0 1em 1em 1em;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 25em;
+
+    button {
+      margin-top: .5em;
+    }
+  }
+}

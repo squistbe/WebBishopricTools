@@ -1,0 +1,23 @@
+:host(app-login) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: -webkit-fill-available;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 25em;
+
+    button {
+      margin-top: .5em;
+    }
+
+    .google-login {
+       background-color: #eb4436;
+       color: #fff;
+     }
+  }
+}

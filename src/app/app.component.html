@@ -1,21 +1,44 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="app-container">
+  <mat-toolbar role="header" color="primary" class="app-toolbar mat-elevation-z6">
+    <div>
+      <button mat-button (click)="sidenav.toggle()" aria-label="Hide Side Menu" class="hamburger" *ngIf="auth.isLoggedIn">
+        <mat-icon aria-hidden="true">menu</mat-icon>
+      </button>
 
-<router-outlet></router-outlet>
+      <img src="../assets/images/main.svg" class="main-icon">
+
+      <h1>LDS Bishopric Tools</h1>
+    </div>
+
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+      <button mat-menu-item routerLink="about">About</button>
+      <button mat-menu-item>Help</button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="appMenu" *ngIf="auth.isLoggedIn">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <div class="sidenav-container">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="side" [opened]="auth.isLoggedIn" class="app-sidenav">
+        <ul>
+          <li><a routerLink="home" routerLinkActive="selected"><mat-icon>dashboard</mat-icon>Dashboard</a></li>
+          <li><a routerLink="callings" routerLinkActive="selected"><mat-icon>assignment</mat-icon>Callings</a></li>
+          <li><a routerLink="interviews" routerLinkActive="selected"><mat-icon>schedule</mat-icon>Interview Schedule</a></li>
+          <li><a routerLink="prayers" routerLinkActive="selected"><mat-icon>record_voice_over</mat-icon>Prayer Tracker</a></li>
+          <li><a routerLink="sacrament-calendar" routerLinkActive="selected"><mat-icon>date_range</mat-icon>Sacrament Calendar</a></li>
+          <li><a routerLink="sacrament-attendance" routerLinkActive="selected"><mat-icon>assessment</mat-icon>Sacrament Attendance</a></li>
+          <li><a routerLink="members" routerLinkActive="selected"><mat-icon>people</mat-icon>Members</a></li>
+        </ul>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>
