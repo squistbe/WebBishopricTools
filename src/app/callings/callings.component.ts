@@ -7,7 +7,6 @@ import {UnitService} from "../unit.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Org} from "../models/org";
 import {OrgFilterDialog} from "./org-filter-dialog";
-import {CallingFilterService} from "../calling-filter.service";
 
 @Component({
   selector: 'app-callings',
@@ -29,8 +28,7 @@ export class CallingsComponent implements OnInit {
     private orgService: OrgService,
     private unitService: UnitService,
     private route: Router,
-    public dialog: MatDialog,
-    private callingFilterService: CallingFilterService
+    public dialog: MatDialog
   ) {
     this.members = unitService.getUnitMembers();
     orgService.getOrgs()

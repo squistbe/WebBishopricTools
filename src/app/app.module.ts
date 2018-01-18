@@ -33,7 +33,6 @@ import { OrgService } from './org.service';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { JwtInterceptorService } from './jwt-interceptor.service';
 import { UnitService } from './unit.service';
-import { CallingFilterService } from './calling-filter.service';
 
 import { FilterPipe } from './filter.pipe';
 import { OrgFilterDialog } from "./callings/org-filter-dialog";
@@ -87,7 +86,6 @@ import { OrgFilterDialog } from "./callings/org-filter-dialog";
     UnitService,
     OrgService,
     AuthInterceptorService,
-    CallingFilterService,
     JwtInterceptorService,
     JwtHelperService,
     {
