@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
+import { DragulaModule } from 'ng2-dragula';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { UploadMembersComponent } from './upload-members/upload-members.component';
 import { UnitAuthComponent } from './unit-auth/unit-auth.component';
+import { AboutComponent } from './about/about.component';
 
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
@@ -31,9 +33,10 @@ import { OrgService } from './org.service';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { JwtInterceptorService } from './jwt-interceptor.service';
 import { UnitService } from './unit.service';
-import { AboutComponent } from './about/about.component';
+import { CallingFilterService } from './calling-filter.service';
 
 import { FilterPipe } from './filter.pipe';
+import { OrgFilterDialog } from "./callings/org-filter-dialog";
 
 
 @NgModule({
@@ -55,7 +58,8 @@ import { FilterPipe } from './filter.pipe';
     AboutComponent,
     FilterPipe,
     FindMemberDialog,
-    AddCallingDialog
+    AddCallingDialog,
+    OrgFilterDialog
   ],
   imports: [
     BrowserModule,
@@ -67,6 +71,7 @@ import { FilterPipe } from './filter.pipe';
     MaterialModule,
     ReactiveFormsModule,
     FileUploadModule,
+    DragulaModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
@@ -82,6 +87,7 @@ import { FilterPipe } from './filter.pipe';
     UnitService,
     OrgService,
     AuthInterceptorService,
+    CallingFilterService,
     JwtInterceptorService,
     JwtHelperService,
     {
@@ -94,7 +100,8 @@ import { FilterPipe } from './filter.pipe';
   entryComponents: [
     AlertDialogComponent,
     FindMemberDialog,
-    AddCallingDialog
+    AddCallingDialog,
+    OrgFilterDialog
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

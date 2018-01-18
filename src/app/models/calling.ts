@@ -1,4 +1,5 @@
 import {Member} from "./member";
+import {Org} from "./org";
 
 export interface Calling {
   name: string,
@@ -17,4 +18,11 @@ export interface CallingStatus {
   description: string,
   sortIndex: string,
   id: string
+}
+
+export interface CallingFilters {
+  filterByOrg?: any[],
+  filterByStatus?: any[],
+  vacantCallings?: boolean,
+  simple?: boolean
 }

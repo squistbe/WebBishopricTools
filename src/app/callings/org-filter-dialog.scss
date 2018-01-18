@@ -1,0 +1,24 @@
+h1 {
+  margin-bottom: 0;
+}
+
+.filter-by-container {
+  display: flex;
+  justify-content: space-evenly;
+
+  .filter-by-org {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+  }
+
+  .filter-by-status {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+  }
+}
+
+.filter-by-vacant {
+  padding: 1em;
+}

@@ -5,6 +5,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {Observable} from "rxjs";
 import {UnitService} from "../unit.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Org} from "../models/org";
+import {OrgFilterDialog} from "./org-filter-dialog";
+import {CallingFilterService} from "../calling-filter.service";
 
 @Component({
   selector: 'app-callings',
@@ -12,18 +15,29 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./callings.component.scss']
 })
 export class CallingsComponent implements OnInit {
-  orgs: Observable<any>;
+  orgs: Org[];
   members: Observable<any>;
   callingStatus: any;
+  filterParams = {
+    filterByOrg: [],
+    filterByStatus: [],
+    vacantCalling: false,
+    simple: false
+  };
 
   constructor(
     private orgService: OrgService,
     private unitService: UnitService,
     private route: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private callingFilterService: CallingFilterService
   ) {
-    this.orgs = orgService.getOrgs();
     this.members = unitService.getUnitMembers();
+    orgService.getOrgs()
+      .subscribe(
+        res => this.orgs = res,
+        err => console.log(err)
+      );
     orgService.getCallingStatuses()
       .subscribe(
         res => this.callingStatus = res
@@ -31,6 +45,24 @@ export class CallingsComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  showFilterDialog(type) {
+    let dialogRef = this.dialog.open(OrgFilterDialog, {
+      width: '550px',
+      height: '575px',
+      data: {
+        filters: this.filterParams
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.orgService.getOrgs(this.filterParams)
+        .subscribe(
+          res => this.orgs = res
+        )
+    });
 
   }
 
@@ -142,7 +174,7 @@ export class AddCallingDialog {
   status: FormControl;
 
   constructor(
-    public dialogRef: MatDialogRef<FindMemberDialog>,
+    public dialogRef: MatDialogRef<AddCallingDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.name = new FormControl();

@@ -21,6 +21,23 @@ $calling-set-apart: #f0f;
   height: 25px;
 }
 
+.filter-callings {
+  position: fixed;
+  right: 0;
+  margin: .5em;
+  z-index: 3;
+  top: 65px;
+}
+
+.callings-progress-bar {
+  position: fixed;
+  background-color: transparent;
+
+  .mat-progress-bar-buffer {
+    background-color: white;
+  }
+}
+
 .callings-list {
   mat-list-item {
     border-bottom: 1px solid #ccc;
@@ -31,6 +48,11 @@ $calling-set-apart: #f0f;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+
+      .reorder-icon {
+        color: #ccc;
+        cursor: grab;
+      }
 
       &.done {
         .status-button {

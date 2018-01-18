@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Filter by...</h1>
+<div mat-dialog-content>
+  <div class="filter-by-container">
+    <div class="filter-by-org">
+      <p>Organization</p>
+      <mat-checkbox *ngFor="let org of orgs" [checked]="isChecked(org.id, 'orgs')" (change)="filterChanged($event, org, 'orgs')">{{org.name}}</mat-checkbox>
+    </div>
+    <div class="filter-by-status">
+      <p>Status</p>
+      <mat-checkbox *ngFor="let status of statuses" [checked]="isChecked(status._id, 'statuses')" (change)="filterChanged($event, status, 'statuses')">{{status.label}}</mat-checkbox>
+    </div>
+  </div>
+  <div class="filter-by-vacant">
+    <mat-checkbox [(ngModel)]="data.filters.vacantCallings">Show vacant callings</mat-checkbox>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close (click)="clearFilters()">Clear Filters</button>
+  <button mat-button [mat-dialog-close]="data.filters">Apply</button>
+</div>
+
